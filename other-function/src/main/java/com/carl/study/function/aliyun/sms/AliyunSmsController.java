@@ -9,6 +9,7 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +35,7 @@ public class AliyunSmsController {
      * @param verfiyCode 验证码
      * @return
      */
+    @GetMapping("/send/verify-code")
     public Object sendVerifyCodeSms(String phone, String verfiyCode) {
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", aliyunConfig.getAccessKeyId(), aliyunConfig.getAccessSecret());
         IAcsClient client = new DefaultAcsClient(profile);
@@ -43,7 +45,7 @@ public class AliyunSmsController {
         retMap.put("phone", phone);
         retMap.put("msg", "调用成功");
         CommonRequest request = new CommonRequest();
-        request.setSysMethod(MethodType.POST);
+        request.setMethod(MethodType.POST);
         try {
             // 短信接收手机号
             request.putQueryParameter("PhoneNumbers", phone);
