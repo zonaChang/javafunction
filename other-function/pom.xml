@@ -51,6 +51,14 @@
             <artifactId>commons-codec</artifactId>
         </dependency>
 
+        <!-- 阿里云相关配置 -->
+        <!--阿里云短信配置-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
