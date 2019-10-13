@@ -46,6 +46,9 @@ public class AliyunSmsController {
         retMap.put("msg", "调用成功");
         CommonRequest request = new CommonRequest();
         request.setMethod(MethodType.POST);
+        request.setDomain("dysmsapi.aliyuncs.com");
+        request.setVersion("2017-05-25");
+        request.setAction("SendSms");
         try {
             // 短信接收手机号
             request.putQueryParameter("PhoneNumbers", phone);
