@@ -27,18 +27,19 @@ public class ExtractImageFromVideoController {
     private String videoPath;
 
     @Value("${data.video.img.Save.path}")
-    private String imgSavePath;
+//    private String imgSavePath;
+    private static String imgSavePath = "D:/images/video2image/";
     //存放截取视频某一帧的图片
 //    public static String videoFramesPath = "D:/images/video2image/";
 //    public static String videoFrames5Path = "D:/images/";
 
     /**
-     * 将视频文件帧处理并以“jpg”格式进行存储。
+     * 将视频文件帧处理并以“png”格式进行存储。
      * 依赖FrameToBufferedImage方法：将frame转换为bufferedImage对象
      *
      * @param videoFileName
      */
-    public String grabberVideoFramer(String videoFileName) {
+    public static String grabberVideoFramer(String videoFileName) {
         //最后获取到的视频的图片的路径
         String videPicture = "";
         //Frame对象
@@ -63,11 +64,11 @@ public class ExtractImageFromVideoController {
 				 */
                 if (frame != null && flag == 5) {
                     //文件绝对路径+名字
-                    String fileName = imgSavePath + UUID.randomUUID().toString() + "_" + flag + ".jpg";
+                    String fileName = imgSavePath + UUID.randomUUID().toString() + "_" + flag + ".png";
 
                     //文件储存对象
                     File outPut = new File(fileName);
-                    ImageIO.write(FrameToBufferedImage(frame), "jpg", outPut);
+                    ImageIO.write(FrameToBufferedImage(frame), "png", outPut);
                     videPicture = fileName;
 
                     //视频第五帧图的路径
@@ -101,7 +102,15 @@ public class ExtractImageFromVideoController {
     @GetMapping("/generate")
     public void main() {
 //            String videoFileName = "D:\\images\\57bd88d187055b018f267568ea674dc6.mp4";
-        String videoFileName = videoPath; //"D:\\images\\xxabcd.mp4";
+//        String videoFileName = videoPath; //"D:\\images\\xxabcd.mp4";
+        String videoFileName = "http://jiaohuitong-test.oss-cn-shanghai.aliyuncs.com/2019/10/08/10db5a31-20cd-41f1-ab82-aea87cb02415.mp4";
+        String url = grabberVideoFramer(videoFileName);
+        System.out.println("url=" + url);
+    }
+    public static void main(String[] args) {
+//            String videoFileName = "D:\\images\\57bd88d187055b018f267568ea674dc6.mp4";
+//        String videoFileName = videoPath; //"D:\\images\\xxabcd.mp4";
+        String videoFileName = "http://jiaohuitong-test.oss-cn-shanghai.aliyuncs.com/2019/10/08/10db5a31-20cd-41f1-ab82-aea87cb02415.mp4";
         String url = grabberVideoFramer(videoFileName);
         System.out.println("url=" + url);
     }
