@@ -67,6 +67,14 @@
             <version>1.2.51</version>
         </dependency>
 
+        <!-- 阿里云相关配置 -->
+        <!--阿里云短信配置-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
